@@ -1,18 +1,16 @@
 library(shiny)
 library(ggplot2)
 library(dplyr)
-library(corrplot)
 library(plotly)
 library(caret)
 library(tidyverse)
 library(naniar)
-library(corrplot)
 library(MASS)
 
 library(shinythemes)
 library(shinyWidgets)
 
-loan_data<-read_csv("C:\\Users\\P8883558\\Videos\\V\\656\\lending_club_loan_data.csv")
+loan_data<-read_csv("https://media.githubusercontent.com/media/pk00787/stat656700/0d6bb7cb03bf4a1fe9d0ec44c3f36471a288a395/lending_club_loan_data.csv")
 loan_data<-data.frame(loan_data)
 ld<-subset(loan_data, select = -c(grade, sub_grade, emp_title,purpose, title, initial_list_status, emp_length,
                                   address, issue_d,earliest_cr_line))
@@ -81,15 +79,8 @@ ui <- fluidPage(
     
     navbarPage(title="Missing Data: Exploratory Data Analysis",
                tabPanel("Missing Data-Before Imputation",
-                        Bef<-ggplotly(figbefore),
-                        HTML(
-                          paste(
-                            p("This plot show the missing data information before 
-                              the imputation. The top variable with the most missing data
-                              is 'mort_acc'.")
-                            
-                          )
-                        )
+                        Bef<-ggplotly(figbefore)
+                        
                ),
                
                tabPanel("Missing Data-After Imputation",
